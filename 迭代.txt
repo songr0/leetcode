@@ -1,0 +1,37 @@
+1.树的中序遍历
+
+思路：
+
+一棵树的左右子节点也是另一棵树的根
+
+先沿着树结构将所有左子节点入栈，然后pop,将值加入结果集
+
+需要注意的是，中序遍历的顺序是左子节点-> 根-> 右子节点
+
+加入结果集的是下一颗树的left，当前的根，每次加入后应该将当前节点指向当前根的右子节点(满足中序的顺序)
+
+
+
+树的最左侧节点最先入库，最右侧节点最后入库
+
+```java
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<Integer>();
+        Deque<TreeNode> stk = new LinkedList<TreeNode>();
+        while (root != null || !stk.isEmpty()) {
+            while (root != null) {
+                stk.push(root);
+                root = root.left;
+            }
+            root = stk.pop();
+            res.add(root.val);
+            root = root.right;
+        }
+        return res;
+    }
+}
+```
+
+
+

@@ -1,0 +1,60 @@
+1.求不重复最长子串长度
+
+思路：
+
+举例，对于abcabcbb，得到abc后，对于下一个字符a（节点：出现重复），需要做的有：
+
+记录abc的长度（由于题目要求，只记录更大的长度即可，一个变量足够）
+
+重复字符第一个a和第二个a的位置p1和p2（由于字符相同，故这里可以复用字符a，可设置一个map用于记录a的上一个位置p1）
+
+将下一个字符串的起始位置改为p1+1
+
+
+
+方案：
+
+1.准备阶段：
+
+当前窗口表示目前的子字符串，
+
+利用for循环，i表示窗口右端，每次右移一位，即当前字符位置p2 (需要根据p2去记录的map中获取p1 -> 计算下一个字符串的起始位置p1+1)，
+
+窗口左端需要设置一个新的变量left用于记录p1+1，但是需要注意，得到的位置p1+1不能出现在left的左侧（左右关系可以转换为一维位置的大小关系，借助Math.max()即可）；
+
+设置字符和pos一一对应的hashMap;
+
+对于结果：需要设置一个max记录非重复子字符串的最大长度
+
+2.判断是否存在重复，可以通过map，list的contains，数组的indexOf进行
+
+3.若上一步得到的结果为重复，则需要更改left的值，计算方式为获取p1+1, 需要知晓当前字符的值a（Map的key, 可以通过string.charAt(i)获取)
+
+不管上一步得到的结果是否为重复，由于i每次加1，每次都应更新max的值,并记录字符出现的最新位置
+
+
+
+```java
+代码：
+PythonC++Java
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if (s.length()==0) return 0;
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int max = 0;
+        int left = 0;
+        for(int i = 0; i < s.length(); i ++){
+            if(map.containsKey(s.charAt(i))){
+                left = Math.max(left,map.get(s.charAt(i)) + 1);
+            }
+            map.put(s.charAt(i),i);
+            max = Math.max(max,i-left+1);
+        }
+        return max;
+        
+    }
+}
+
+```
+
