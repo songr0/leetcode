@@ -38,7 +38,9 @@ public class IsValidBST {
 
 
     public static void main(String[] args) {
+        // expected: false
         List<Integer> list = Arrays.asList(5,1,4,null,null,3,6);
+        // expected: true
 //        List<Integer> list = Arrays.asList(2,1,3);
         TreeNode root = TreeNode.buildTree(list);
         IsValidBST isValidBST = new IsValidBST();

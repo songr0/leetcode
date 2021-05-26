@@ -1,5 +1,6 @@
 package main.domain;
 
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class TreeNode {
     public TreeNode left;
     public TreeNode right;
     TreeNode() {}
-    TreeNode(Integer val) { this.val = val; }
+    public TreeNode(Integer val) { this.val = val; }
     TreeNode(Integer val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
@@ -50,4 +51,24 @@ public class TreeNode {
             deque.addLast(parent.right);
         }
     }
+
+    public static List<Integer> printTree(TreeNode root){
+        List<Integer> list = new ArrayList<>(10);
+        Deque<TreeNode> deque = new LinkedList<>();
+        deque.offer(root);
+        while(! deque.isEmpty()){
+            TreeNode node = deque.pollFirst();
+            if(node != null){
+                list.add(node.val);
+                System.out.println(node.val);
+                deque.offer(node.left);
+                deque.offer(node.right);
+            } else {
+                list.add(null);
+                System.out.println("null");
+            }
+        }
+        return list;
+    }
+
 }
