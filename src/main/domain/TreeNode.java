@@ -2,6 +2,7 @@ package main.domain;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Song Rui
@@ -18,13 +19,18 @@ public class TreeNode {
         this.right = right;
     }
 
-    public static TreeNode buildTree(int[] array){
-        if(array.length == 0){
+    /**
+     * 根据传入的数组构建完全二叉树
+     * @param array 数组中的元素对应树节点的值，例如：[5,1,4,null,null,3,6]
+     * @return 二叉树的根节点
+     */
+    public static TreeNode buildTree(List<Integer> array){
+        if(array.isEmpty()){
             return null;
         }
-        TreeNode root = new TreeNode(array[0]);
+        TreeNode root = new TreeNode(array.get(0));
         int index = 0;
-        int len = array.length;
+        int len = array.size();
         Deque<TreeNode> deque = new LinkedList<>();
         deque.offerLast(root);
         while (true){
@@ -34,12 +40,14 @@ public class TreeNode {
             }
             TreeNode parent = deque.poll();
             assert parent != null;
-            parent.left = new TreeNode(array[index]);
+            parent.left = new TreeNode(array.get(index));
+            deque.addLast(parent.left);
             index++;
             if(index >= len){
                 return root;
             }
-            parent.right = new TreeNode(array[index]);
+            parent.right = new TreeNode(array.get(index));
+            deque.addLast(parent.right);
         }
     }
 }

@@ -3,6 +3,7 @@ package main;
 import main.domain.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,9 +36,11 @@ public class IsValidBST {
         inorder(node.right, list);
     }
 
+
     public static void main(String[] args) {
-        int[] array = new int[]{1, 1};
-        TreeNode root = TreeNode.buildTree(array);
+        List<Integer> list = Arrays.asList(5,1,4,null,null,3,6);
+//        List<Integer> list = Arrays.asList(2,1,3);
+        TreeNode root = TreeNode.buildTree(list);
         IsValidBST isValidBST = new IsValidBST();
         System.out.println(isValidBST.isValidBST(root));
     }
