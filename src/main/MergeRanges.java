@@ -33,8 +33,4 @@ public class MergeRanges extends Solution{
         return merged.toArray(new int[merged.size()][2]);
     }
 
-    @Override
-    void test() {
-
-    }
 }

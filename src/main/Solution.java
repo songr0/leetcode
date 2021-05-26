@@ -5,8 +5,4 @@ package main;
  */
 public abstract class Solution {
 
-    /**
-     * 用于测试
-     */
-    abstract void test();
 }
