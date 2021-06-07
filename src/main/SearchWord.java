@@ -1,5 +1,7 @@
 package main;
 
+import java.util.HashSet;
+
 public class SearchWord extends Solution{
 
     int[][] directions = new int[][]{{1,0},{-1,0},{0,1},{0,-1}};

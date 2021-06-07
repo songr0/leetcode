@@ -60,14 +60,16 @@ public class TreeNode {
             TreeNode node = deque.pollFirst();
             if(node != null){
                 list.add(node.val);
-                System.out.println(node.val);
                 deque.offer(node.left);
                 deque.offer(node.right);
             } else {
                 list.add(null);
-                System.out.println("null");
             }
         }
+        while (list.get(list.size()-1) == null){
+            list.remove(list.size()-1);
+        }
+        list.forEach(System.out::println);
         return list;
     }
 
