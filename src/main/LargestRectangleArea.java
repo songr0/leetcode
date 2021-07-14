@@ -1,8 +1,6 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author Song Rui
@@ -13,32 +11,20 @@ public class LargestRectangleArea {
             return 0;
         }
         int len = heights.length;
-        int maxV = 0;
-        Stack<Integer> stack = new Stack<>();
-        List<Integer> list = new ArrayList<>(len);
-        stack.push(heights[0]);
-        list.add(1);
-        int width;
-        for(int i = 1;i< len;++i){
-            width=1;
-            while(!stack.isEmpty() && heights[i]<stack.peek()){
-                width++;
-                maxV = Math.max(maxV, stack.peek()*list.get(list.size()-1));
-                stack.pop();
-                list.remove(list.size()-1);
+        int[] newHeights = new int[len+2];
+        newHeights[0] = 0;
+        System.arraycopy(heights,0, newHeights, 1, len);
+        newHeights[len+1] = 0;
+        int maxSum = 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+        for(int i = 0;i< len+2;++i){
+            while(! stack.isEmpty() && newHeights[stack.peekFirst()] > newHeights[i]){
+                int height = newHeights[stack.removeFirst()];
+                maxSum= Math.max(maxSum, height*(i-stack.peekFirst()-1));
             }
-            stack.push(heights[i]);
-            for(int j = 0;j< list.size();++j){
-                list.set(j, list.get(j)+1);
-            }
-            list.add(width);
+            stack.addFirst(i);
         }
-        while(!stack.isEmpty()){
-            maxV = Math.max(maxV, stack.peek()*list.get(list.size()-1));
-            stack.pop();
-            list.remove(list.size()-1);
-        }
-        return maxV;
+        return maxSum;
     }
 
 
