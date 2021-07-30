@@ -1,4 +1,4 @@
-package main;
+package main.sort;
 
 import main.domain.ListNode;
 import org.junit.Assert;
