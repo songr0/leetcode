@@ -8,18 +8,22 @@ public class SearchMatrix {
         if(matrix.length == 0 || matrix[0].length == 0){
             return false;
         }
-        if(matrix[0][0] == target){
-            return true;
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int row = 0;
+        int col = cols-1;
+        int temp;
+        while(row < rows && col >= 0){
+            temp = matrix[row][col];
+            if(temp == target){
+                return true;
+            } else if(temp > target){
+                col--;
+            } else {
+                row++;
+            }
         }
-        return find(matrix, target, 0, 0, matrix.length-1, matrix[0].length-1);
-    }
-
-    boolean find(int[][] matrix, int target, int x1, int y1, int x2, int y2){
-        if(x2<x1 || y2<y1 || target>matrix[x2][y2] || target<matrix[x1][y1]){
-            return false;
-        }
-        int mid = (y1+y2)/2;
-        return true;
+        return false;
     }
 
     public static void main(String[] args) {

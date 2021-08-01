@@ -1,8 +1,8 @@
-package main;
+package main.string;
 
-import java.util.HashSet;
+import main.Solution;
 
-public class SearchWord extends Solution{
+public class SearchWord extends Solution {
 
     int[][] directions = new int[][]{{1,0},{-1,0},{0,1},{0,-1}};
     int x, y;
