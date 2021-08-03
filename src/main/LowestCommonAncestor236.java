@@ -27,9 +27,8 @@ public class LowestCommonAncestor236 {
             return root;
         } else if(node1 == null){
             return node2;
-        } else if(node2 == null){
+        } else {
             return node1;
         }
-        return null;
     }
 }

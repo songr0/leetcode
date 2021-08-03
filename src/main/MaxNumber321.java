@@ -1,9 +1,9 @@
 package main;
 
-import javax.swing.*;
 import java.util.*;
 
 /**
+ * 单调栈
  * @author Song Rui
  */
 public class MaxNumber321 {
