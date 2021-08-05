@@ -2,6 +2,9 @@ package main;
 
 import main.domain.ListNode;
 
+/**
+ * @author Song Rui
+ */
 public class ReverseList {
 
     public ListNode ReverseList(ListNode head) {

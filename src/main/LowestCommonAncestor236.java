@@ -12,7 +12,7 @@ public class LowestCommonAncestor236 {
             return null;
         }
         // 1.return 的时候按最内层理解
-        if(root.val.equals(p.val) || root.val.equals(q.val)){
+        if(root.val == p.val || root.val == q.val){
             // 返回条件，找到p或q
             // 返回到的层数，与递归条件有关，即root.left或root.right的root
             // 若能同时找到node1，node2,那么root就是公共父结点，

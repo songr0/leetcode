@@ -11,10 +11,20 @@ import main.domain.TreeNode;
 public class IsSubStructureOffer26 {
 
     public boolean isSubStructure(TreeNode A, TreeNode B) {
-        if(B == null){
+        if(B == null || A == null){
             return false;
         }
-
-        return false;
+        return recur(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B);
     }
+
+    private boolean recur(TreeNode a, TreeNode b) {
+        if(b == null){
+            return true;
+        }
+        if(a == null || a.val != b.val){
+            return false;
+        }
+        return recur(a.left, b.left) && recur(a.right, b.right);
+    }
+
 }
