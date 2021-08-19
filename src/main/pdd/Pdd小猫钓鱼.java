@@ -1,6 +1,9 @@
 package main.pdd;
 import java.util.*;
 
+/**
+ * @author Song Rui
+ */
 public class Pdd小猫钓鱼 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
